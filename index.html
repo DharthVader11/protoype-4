@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Symptom Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Symptom Checker</h1>
+
+  <label for="symptomDescription">Describe your symptoms below:</label>
+  <textarea id="symptomDescription" placeholder="e.g., I have a headache and sore throat..."></textarea>
+
+  <button onclick="getDiagnosisAndRemedy()">Get Diagnosis and Remedy</button>
+
+  <div id="result"></div>
+
+  <script>
+    function getDiagnosisAndRemedy() {
+      const input = document.getElementById("symptomDescription").value.toLowerCase();
+      const resultDiv = document.getElementById("result");
+
+      if (!input.trim()) {
+        resultDiv.innerText = "❗ Please enter some symptoms.";
+        return;
+      }
+
+      let diagnosis = "Unknown condition.";
+      let remedy = "Please consult a healthcare professional.";
+
+      // Basic keyword-based symptom matching
+      if (input.includes("headache")) {
+        diagnosis = "Tension Headache";
+        remedy = "Rest in a quiet, dark room. Drink water. Take an over-the-counter pain reliever like ibuprofen.";
+      } else if (input.includes("sore throat") || input.includes("throat pain")) {
+        diagnosis = "Sore Throat (Possibly Viral)";
+        remedy = "Gargle with warm salt water. Drink warm fluids. Use throat lozenges or sprays.";
+      } else if (input.includes("cough")) {
+        diagnosis = "Common Cold or Cough";
+        remedy = "Stay hydrated, rest, and consider honey in warm tea. If severe or persistent, see a doctor.";
+      } else if (input.includes("stomach ache") || input.includes("stomach pain")) {
+        diagnosis = "Mild Gastric Upset";
+        remedy = "Drink clear fluids, avoid solid food temporarily, and rest. If symptoms persist, consult a doctor.";
+      } else if (input.includes("fever")) {
+        diagnosis = "Possible Viral Infection";
+        remedy = "Take paracetamol or ibuprofen, rest, and drink plenty of fluids.";
+      } else if (input.includes("nausea")) {
+        diagnosis = "Mild Nausea";
+        remedy = "Try ginger tea or peppermint. Eat bland foods. Stay hydrated.";
+      }
+
+      resultDiv.innerText = `🩺 Diagnosis: ${diagnosis}\n💊 Remedy: ${remedy}`;
+    }
+  </script>
+
+</body>
+</html>

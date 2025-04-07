@@ -1,0 +1,49 @@
+body {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #f0f9ff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #a5d8ff;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-bottom: 5px dashed #333;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+main {
+  padding: 2rem;
+}
+
+.lab-intro, .experiments {
+  background: #fff8dc;
+  border: 3px dotted #ff69b4;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 5px 5px 0 #ccc;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+ul {
+  list-style-type: "🧬 ";
+  padding-left: 1.5rem;
+}
+
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}

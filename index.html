@@ -1,364 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Symptom Checker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-      background-color: #f9f9f9;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Symptom Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 700px;
+            margin: auto;
+            background-color: #f9f9f9;
+        }
 
-    h1 {
-      text-align: center;
-    }
+        h1 {
+            text-align: center;
+        }
 
-    textarea {
-      width: 100%;
-      height: 150px;
-      padding: 10px;
-      font-size: 16px;
-    }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+        }
 
-    button {
-      display: block;
-      margin: 20px auto;
-      padding: 12px 20px;
-      font-size: 18px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    button:hover {
-      background-color: #45a049;
-    }
+        button:hover {
+            background-color: #45a049;
+        }
 
-    #result {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #ffffff;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      white-space: pre-wrap;
-    }
-  </style>
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
+
 <body>
 
-  <h1>Symptom Checker</h1>
+    <h1>Symptom Checker</h1>
 
-  <label for="symptomDescription">Describe your symptoms below:</label>
-  <textarea id="symptomDescription" placeholder="e.g., I have a headache and sore throat..."></textarea>
+    <label for="symptomDescription">Describe your symptoms below:</label>
+    <textarea id="symptomDescription" placeholder="e.g., I have a headache and sore throat..."></textarea>
 
-  <button onclick="getDiagnosisAndRemedy()">Get Diagnosis and Remedy</button>
+    <button onclick="getDiagnosisAndRemedy()">Get Diagnosis and Remedy</button>
 
-  <div id="result"></div>
+    <div id="result"></div>
 
-  <script>
-    function getDiagnosisAndRemedy() {
-      const input = document.getElementById("symptomDescription").value.toLowerCase();
-      const resultDiv = document.getElementById("result");
+    <script>
+        function getDiagnosisAndRemedy() {
+            const input = document.getElementById("symptomDescription").value.toLowerCase();
+            const resultDiv = document.getElementById("result");
 
-      if (!input.trim()) {
-        resultDiv.innerText = "❗ Please enter some symptoms.";
-        return;
-      }
+            if (!input.trim()) {
+                resultDiv.innerText = "❗ Please enter some symptoms.";
+                return;
+            }
 
-      let diagnosis = "Unknown condition.";
-      let remedy = "Please consult a healthcare professional.";
+            let diagnosis = "Unknown condition.";
+            let remedy = "Please consult a healthcare professional.";
 
-      // Basic keyword-based symptom matching
-      if (input.includes("headache")) {
-        diagnosis = "Tension Headache";
-        remedy = "Rest in a quiet, dark room. Drink water. Take an over-the-counter pain reliever like ibuprofen.";
-      } else if (input.includes("sore throat") || input.includes("throat pain")) {
-        diagnosis = "Sore Throat (Possibly Viral)";
-        remedy = "Gargle with warm salt water. Drink warm fluids. Use throat lozenges or sprays.";
-      } else if (input.includes("cough")) {
-        diagnosis = "Common Cold or Cough";
-        remedy = "Stay hydrated, rest, and consider honey in warm tea. If severe or persistent, see a doctor.";
-      } else if (input.includes("stomach ache") || input.includes("stomach pain")) {
-        diagnosis = "Mild Gastric Upset";
-        remedy = "Drink clear fluids, avoid solid food temporarily, and rest. If symptoms persist, consult a doctor.";
-      } else if (input.includes("fever")) {
-        diagnosis = "Possible Viral Infection";
-        remedy = "Take paracetamol or ibuprofen, rest, and drink plenty of fluids.";
-      } else if (input.includes("nausea")) {
-        diagnosis = "Mild Nausea";
-        remedy = "Try ginger tea or peppermint. Eat bland foods. Stay hydrated.";
-      } else if (input.includes("numbness in left arm") || input.includes("chest pain")) { 
-    diagnosis = "Heart attack";
-    remedy = "Call 911";
-}
-else if (input.includes("fever") || input.includes("chills")) { 
-    diagnosis = "Flu";
-    remedy = "Rest, drink fluids, and take fever-reducing medication like ibuprofen";
-}
-else if (input.includes("headache") || input.includes("sensitivity to light")) { 
-    diagnosis = "Migraine";
-    remedy = "Rest in a dark room and take pain relievers like ibuprofen or acetaminophen";
-}
-else if (input.includes("shortness of breath") || input.includes("wheezing")) { 
-    diagnosis = "Asthma attack";
-    remedy = "Use inhaler or seek emergency medical treatment if symptoms don't improve";
-}
-else if (input.includes("sore throat") || input.includes("difficulty swallowing")) { 
-    diagnosis = "Strep throat";
-    remedy = "Antibiotics prescribed by a doctor";
-}
-else if (input.includes("abdominal pain") || input.includes("bloating")) { 
-    diagnosis = "Irritable Bowel Syndrome (IBS)";
-    remedy = "Manage diet and stress; medications for pain relief and diarrhea";
-}
-else if (input.includes("unexplained weight loss") || input.includes("fatigue")) { 
-    diagnosis = "Hyperthyroidism";
-    remedy = "Medication to regulate thyroid levels and regular monitoring";
-}
-else if (input.includes("painful urination") || input.includes("blood in urine")) { 
-    diagnosis = "Urinary Tract Infection (UTI)";
-    remedy = "Antibiotics prescribed by a doctor";
-}
-else if (input.includes("swollen lymph nodes") || input.includes("night sweats")) { 
-    diagnosis = "Lymphoma";
-    remedy = "Chemotherapy or radiation depending on type and stage";
-}
-else if (input.includes("persistent cough") || input.includes("blood in sputum")) { 
-    diagnosis = "Tuberculosis";
-    remedy = "Long-term antibiotic treatment prescribed by a healthcare provider";
-}
-else if (input.includes("nausea") || input.includes("vomiting")) { 
-    diagnosis = "Gastroenteritis";
-    remedy = "Rest, stay hydrated, and avoid solid food for a while";
-}
-else if (input.includes("pain in lower back") || input.includes("difficulty moving legs")) { 
-    diagnosis = "Sciatica";
-    remedy = "Physical therapy, anti-inflammatory medication, and in some cases, surgery";
-}
-else if (input.includes("skin rash") || input.includes("itching")) { 
-    diagnosis = "Allergic reaction";
-    remedy = "Antihistamines or corticosteroids for inflammation";
-}
-else if (input.includes("sudden weight gain") || input.includes("swelling in legs")) { 
-    diagnosis = "Heart failure";
-    remedy = "Medications like diuretics, lifestyle changes, and monitoring";
-}
-else if (input.includes("severe abdominal pain") || input.includes("fever")) { 
-    diagnosis = "Appendicitis";
-    remedy = "Surgical removal of the appendix";
-}
-else if (input.includes("severe headache") || input.includes("nausea")) { 
-    diagnosis = "Migraine";
-    remedy = "Pain relievers, rest, and avoiding migraine triggers";
-}
-else if (input.includes("chronic cough") || input.includes("difficulty breathing")) { 
-    diagnosis = "Chronic obstructive pulmonary disease (COPD)";
-    remedy = "Medications, inhalers, and oxygen therapy if necessary";
-}
-else if (input.includes("dizziness") || input.includes("spinning sensation")) { 
-    diagnosis = "Vertigo";
-    remedy = "Vestibular rehabilitation therapy or medication for nausea";
-}
-else if (input.includes("unusual bruising") || input.includes("bleeding gums")) { 
-    diagnosis = "Vitamin K deficiency or blood disorder";
-    remedy = "Vitamin K supplements or medical treatment for underlying condition";
-}
-else if (input.includes("joint pain") || input.includes("swelling in joints")) { 
-    diagnosis = "Rheumatoid Arthritis";
-    remedy = "Anti-inflammatory drugs and disease-modifying antirheumatic drugs (DMARDs)";
-}
-else if (input.includes("persistent fatigue") || input.includes("difficulty concentrating")) { 
-    diagnosis = "Chronic Fatigue Syndrome";
-    remedy = "Pacing activity, stress management, and addressing underlying conditions";
-}
-else if (input.includes("memory loss") || input.includes("difficulty recognizing familiar faces")) { 
-    diagnosis = "Alzheimer's Disease";
-    remedy = "Cognitive therapies and medications to manage symptoms";
-}
-else if (input.includes("muscle weakness") || input.includes("drooping eyelids")) { 
-    diagnosis = "Myasthenia Gravis";
-    remedy = "Anticholinesterase medication and immunosuppressive drugs";
-}
-else if (input.includes("itchy eyes") || input.includes("runny nose")) { 
-    diagnosis = "Allergic Rhinitis";
-    remedy = "Antihistamines and avoiding allergens";
-}
-else if (input.includes("skin discoloration") || input.includes("fatigue")) { 
-    diagnosis = "Cirrhosis";
-    remedy = "Medications to manage symptoms and liver transplant in advanced cases";
-}
-else if (input.includes("persistent cough") || input.includes("excessive sputum production")) { 
-    diagnosis = "Chronic Bronchitis";
-    remedy = "Smoking cessation, bronchodilators, and steroids";
-}
-else if (input.includes("severe headache") || input.includes("blurred vision")) { 
-    diagnosis = "Glaucoma";
-    remedy = "Medications or surgery to reduce intraocular pressure";
-}
-else if (input.includes("painful joints") || input.includes("fever")) { 
-    diagnosis = "Rheumatic fever";
-    remedy = "Antibiotics and anti-inflammatory medications";
-}
-else if (input.includes("increased thirst") || input.includes("frequent urination")) { 
-    diagnosis = "Diabetes mellitus";
-    remedy = "Insulin therapy and blood sugar management";
-}
-else if (input.includes("severe pain in abdomen") || input.includes("vomiting blood")) { 
-    diagnosis = "Peptic Ulcer";
-    remedy = "Antibiotics if H. pylori infection is present, and proton pump inhibitors";
-}
-else if (input.includes("difficulty swallowing") || input.includes("regurgitation of food")) { 
-    diagnosis = "Esophageal reflux disease (GERD)";
-    remedy = "Antacids, proton pump inhibitors, and lifestyle changes";
-}
-else if (input.includes("unexplained bruising") || input.includes("fatigue")) { 
-    diagnosis = "Leukemia";
-    remedy = "Chemotherapy and possible bone marrow transplant";
-}
-else if (input.includes("nausea") || input.includes("vomiting blood")) { 
-    diagnosis = "Gastric bleeding";
-    remedy = "Endoscopy, medications, and sometimes surgery";
-}
-else if (input.includes("severe dizziness") || input.includes("confusion")) { 
-    diagnosis = "Stroke";
-    remedy = "Call 911 immediately for emergency treatment";
-}
-else if (input.includes("sudden weakness") || input.includes("slurred speech")) { 
-    diagnosis = "Stroke";
-    remedy = "Seek emergency medical help immediately";
-}
-else if (input.includes("red eyes") || input.includes("eye pain")) { 
-    diagnosis = "Conjunctivitis";
-    remedy = "Antibiotic or antiviral eye drops, depending on the cause";
-}
-else if (input.includes("persistent dry cough") || input.includes("wheezing")) { 
-    diagnosis = "Pulmonary fibrosis";
-    remedy = "Oxygen therapy and antifibrotic medications";
-}
-else if (input.includes("constant tiredness") || input.includes("shortness of breath")) { 
-    diagnosis = "Anemia";
-    remedy = "Iron supplements or other treatments depending on the cause";
-}
-else if (input.includes("stiff neck") || input.includes("fever")) { 
-    diagnosis = "Meningitis";
-    remedy = "Hospitalization, antibiotics, and antiviral medications";
-}
-else if (input.includes("frequent headaches") || input.includes("blurry vision")) { 
-    diagnosis = "High blood pressure (Hypertension)";
-    remedy = "Antihypertensive medications and lifestyle changes";
-}
-else if (input.includes("itchy skin") || input.includes("red patches on skin")) { 
-    diagnosis = "Psoriasis";
-    remedy = "Topical corticosteroids and light therapy";
-}
-else if (input.includes("chronic fatigue") || input.includes("fever")) { 
-    diagnosis = "Mononucleosis";
-    remedy = "Rest and hydration, with medications for symptoms";
-}
-else if (input.includes("swollen feet") || input.includes("pain in calves")) { 
-    diagnosis = "Deep vein thrombosis (DVT)";
-    remedy = "Blood thinners and sometimes compression stockings";
-}
-else if (input.includes("numbness in fingers") || input.includes("pins and needles")) { 
-    diagnosis = "Carpal Tunnel Syndrome";
-    remedy = "Wrist splints, rest, and in some cases, surgery";
-}
-else if (input.includes("severe back pain") || input.includes("numbness in legs")) { 
-    diagnosis = "Herniated disc";
-    remedy = "Rest, physical therapy, and possibly surgery";
-}
-else if (input.includes("rash") || input.includes("fever")) { 
-    diagnosis = "Chickenpox";
-    remedy = "Antihistamines for itching and antiviral medication in severe cases";
-}
-else if (input.includes("sore throat") || input.includes("white patches on tonsils")) { 
-    diagnosis = "Tonsillitis";
-    remedy = "Antibiotics and pain relievers if bacterial";
-}
-else if (input.includes("frequent thirst") || input.includes("dry mouth")) { 
-    diagnosis = "Diabetes insipidus";
-    remedy = "Hormone replacement and managing fluid intake";
-}
-else if (input.includes("pain in chest") || input.includes("difficulty breathing")) { 
-    diagnosis = "Pulmonary embolism";
-    remedy = "Immediate medical attention, blood thinners, and sometimes surgery";
-}
-else if (input.includes("pain in joints") || input.includes("swelling in joints")) { 
-    diagnosis = "Osteoarthritis";
-    remedy = "Pain relievers, physical therapy, and in severe cases, joint replacement";
-}
-else if (input.includes("tingling in hands") || input.includes("numbness in feet")) { 
-    diagnosis = "Peripheral neuropathy";
-    remedy = "Medications for nerve pain and managing underlying conditions";
-}
-else if (input.includes("severe stomach cramps") || input.includes("bloody stools")) { 
-    diagnosis = "Inflammatory bowel disease (IBD)";
-    remedy = "Anti-inflammatory drugs, immunosuppressants, and dietary changes";
-}
-else if (input.includes("severe fatigue") || input.includes("joint pain")) { 
-    diagnosis = "Lupus";
-    remedy = "Immunosuppressive drugs and symptom management";
-}
-else if (input.includes("nausea") || input.includes("yellow skin")) { 
-    diagnosis = "Hepatitis";
-    remedy = "Antiviral medications and lifestyle modifications";
-}
-else if (input.includes("bleeding gums") || input.includes("loose teeth")) { 
-    diagnosis = "Gum disease (Periodontitis)";
-    remedy = "Regular dental cleaning, improved oral hygiene, and sometimes surgery";
-}
-else if (input.includes("swollen face") || input.includes("shortness of breath")) { 
-    diagnosis = "Angioedema";
-    remedy = "Antihistamines and sometimes epinephrine for severe reactions";
-}
-else if (input.includes("numbness in toes") || input.includes("cold feet")) { 
-    diagnosis = "Raynaud's Disease";
-    remedy = "Warm clothing, medications for blood flow, and stress management";
-}
-else if (input.includes("sore muscles") || input.includes("fatigue")) { 
-    diagnosis = "Fibromyalgia";
-    remedy = "Pain relievers, antidepressants, and stress management techniques";
-}
-else if (input.includes("pain in throat") || input.includes("difficulty swallowing")) { 
-    diagnosis = "Gastroesophageal reflux disease (GERD)";
-    remedy = "Antacids, proton pump inhibitors, and lifestyle changes";
-}
-else if (input.includes("extreme thirst") || input.includes("dry skin")) { 
-    diagnosis = "Diabetic ketoacidosis (DKA)";
-    remedy = "Immediate medical attention with intravenous fluids and insulin";
-}
-else if (input.includes("heart palpitations") || input.includes("chest discomfort")) { 
-    diagnosis = "Arrhythmia";
-    remedy = "Cardiac medications, lifestyle changes, or surgical interventions";
-}
-else if (input.includes("sore mouth") || input.includes("painful ulcers")) { 
-    diagnosis = "Aphthous Stomatitis (Canker sores)";
-    remedy = "Topical corticosteroids and saltwater rinses";
-}
-else if (input.includes("pain in legs") || input.includes("swelling in calves")) { 
-    diagnosis = "Varicose veins";
-    remedy = "Compression stockings and lifestyle modifications";
-}
-else if (input.includes("sudden confusion") || input.includes("difficulty speaking")) { 
-    diagnosis = "Transient ischemic attack (TIA)";
-    remedy = "Emergency medical treatment and risk factor management";
-}
-else if (input.includes("swollen abdomen") || input.includes("painful bloating")) { 
-    diagnosis = "Ascites";
-    remedy = "Treat underlying liver disease, diuretics, and in severe cases, paracentesis";
-}
-
-      
-
-      resultDiv.innerText = `🩺 Diagnosis: ${diagnosis}\n💊 Remedy: ${remedy}`;
-    }
-  </script>
+            // Basic keyword-based symptom matching
+            if (input.includes("headache")) {
+                diagnosis = "Tension Headache";
+                remedy = "Rest in a quiet, dark room. Drink water. Take an over-the-counter pain reliever like ibuprofen.";
+            } else if (input.includes("sore throat") || input.includes("throat pain")) {
+                diagnosis = "Sore Throat (Possibly Viral)";
+                remedy = "Gargle with warm salt water. Drink warm fluids. Use throat lozenges or sprays.";
+            } else if (input.includes("cough")) {
+                diagnosis = "Common Cold or Cough";
+                remedy = "Stay hydrated, rest, and consider honey in warm tea. If severe or persistent, see a doctor.";
+            } else if (input.includes("stomach ache") || input.includes("stomach pain")) {
+                diagnosis = "Mild Gastric Upset";
+                remedy = "Drink clear fluids, avoid solid food temporarily, and rest. If symptoms persist, consult a doctor.";
+            } else if (input.includes("fever")) {
+                diagnosis = "Possible Viral Infection";
+                remedy = "Take paracetamol or ibuprofen, rest, and drink plenty of fluids.";
+            } else if (input.includes("nausea")) {
+                diagnosis = "Mild Nausea";
+                remedy = "Try ginger tea or peppermint. Eat bland foods. Stay hydrated.";
+            } else if (input.includes("numbness in left arm") || input.includes("chest pain")) {
+                diagnosis = "Heart attack";
+                remedy = "Call 911";
+            } else if (input.includes("fever") || input.includes("chills")) {
+                diagnosis = "Flu";
+                remedy = "Rest, drink fluids, and take fever-reducing medication like ibuprofen";
+            } else if (input.includes("headache") || input.includes("sensitivity to light")) {
+                diagnosis = "Migraine";
+                remedy = "Rest in a dark room and take pain relievers like ibuprofen or acetaminophen";
+            } else if (input.includes("shortness of breath") || input.includes("wheezing")) {
+                diagnosis = "Asthma attack";
+                remedy = "Use inhaler or seek emergency medical treatment if symptoms don't improve";
+            } else if (input.includes("sore throat") || input.includes("difficulty swallowing")) {
+                diagnosis = "Strep throat";
+                remedy = "Antibiotics prescribed by a doctor";
+            } else if (input.includes("abdominal pain") || input.includes("bloating")) {
+                diagnosis = "Irritable Bowel Syndrome (IBS)";
+                remedy = "Manage diet and stress; medications for pain relief and diarrhea";
+            } else if (input.includes("unexplained weight loss") || input.includes("fatigue")) {
+                diagnosis = "Hyperthyroidism";
+                remedy = "Medication to regulate thyroid levels and regular monitoring";
+            } else if (input.includes("painful urination") || input.includes("blood in urine")) {
+                diagnosis = "Urinary Tract Infection (UTI)";
+                remedy = "Antibiotics prescribed by a doctor";
+            } else if (input.includes("swollen lymph nodes") || input.includes("night sweats")) {
+                diagnosis = "Lymphoma";
+                remedy = "Chemotherapy or radiation depending on type and stage";
+            } else if (input.includes("persistent cough") || input.includes("blood in sputum")) {
+                diagnosis = "Tuberculosis";
+                remedy = "Long-term antibiotic treatment prescribed by a healthcare provider";
+            } else if (input.includes("nausea") || input.includes("vomiting")) {
+                diagnosis = "Gastroenteritis";
+                remedy = "Rest, stay hydrated, and avoid solid food for a while";
+            } else if (input.includes("pain in lower back") || input.includes("difficulty moving legs")) {
+                diagnosis = "Sciatica";
+                remedy = "Physical therapy, anti-inflammatory medication, and in some cases, surgery";
+            } else if (input.includes("skin rash") || input.includes("itching")) {
+                diagnosis = "Allergic reaction";
+                remedy = "Antihistamines or corticosteroids for inflammation";
+            } else if (input.includes("sudden weight gain") || input.includes("swelling in legs")) {
+                diagnosis = "Heart failure";
+                remedy = "Medications like diuretics, lifestyle changes, and monitoring";
+            } else if (input.includes("severe abdominal pain") || input.includes("fever")) {
+                diagnosis = "Appendicitis";
+                remedy = "Surgical removal of the appendix";
+            } else if (input.includes("severe headache") || input.includes("nausea")) {
+                diagnosis = "Migraine";
+                remedy = "Pain relievers, rest, and avoiding migraine triggers";
+            } else if (input.includes("chronic cough") || input.includes("difficulty breathing")) {
+                diagnosis = "Chronic obstructive pulmonary disease (COPD)";
+                remedy = "Medications, inhalers, and oxygen therapy if necessary";
+            } else if (input.includes("dizziness") || input.includes("spinning sensation")) {
+                diagnosis = "Vertigo";
+                remedy = "Vestibular rehabilitation therapy or medication for nausea";
+            } else if (input.includes("unusual bruising") || input.includes("bleeding gums")) {
+                diagnosis = "Vitamin K deficiency or blood disorder";
+                remedy = "Vitamin K supplements or medical treatment for underlying condition";
+            } else if (input.includes("joint pain") || input.includes("swelling in joints")) {
+                diagnosis = "Rheumatoid Arthritis";
+                remedy = "Anti-inflammatory drugs and disease-modifying antirheumatic drugs (DMARDs)";
+            } else if (input.includes("persistent fatigue") || input.includes("difficulty concentrating")) {
+                diagnosis = "Chronic Fatigue Syndrome";
+                remedy = "Pacing activity, stress management, and addressing underlying conditions";
+            } else if (input.includes("memory loss") || input.includes("difficulty recognizing familiar faces")) {
+                diagnosis = "Alzheimer's Disease";
+                remedy = "Cognitive therapies and medications to manage symptoms";
+            } else if (input.includes("muscle weakness") || input.includes("drooping eyelids")) {
+                diagnosis = "Myasthenia Gravis";
+                remedy = "Anticholinesterase medication and immunosuppressive drugs";
+            } else if (input.includes("itchy eyes") || input.includes("runny nose")) {
+                diagnosis = "Allergic Rhinitis";
+                remedy = "Antihistamines and avoiding allergens";
+            } else if (input.includes("skin discoloration") || input.includes("fatigue")) {
+                diagnosis = "Cirrhosis";
+                remedy = "Medications to manage symptoms and liver transplant in advanced cases";
+            } else if (input.includes("persistent cough") || input.includes("excessive sputum production")) {
+                diagnosis = "Chronic Bronchitis";
+                remedy = "Smoking cessation, bronchodilators, and steroids";
+            } else if (input.includes("severe headache") || input.includes("blurred vision")) {
+                diagnosis = "Glaucoma";
+                remedy = "Medications or surgery to reduce intraocular pressure";
+            } else if (input.includes("painful joints") || input.includes("fever")) {
+                diagnosis = "Rheumatic fever";
+                remedy = "Antibiotics and anti-inflammatory medications";
+            } else if (input.includes("increased thirst") || input.includes("frequent urination")) {
+                diagnosis = "Diabetes mellitus";
+                remedy = "Insulin therapy and blood sugar management";
+            } else if (input.includes("severe pain in abdomen") || input.includes("vomiting blood")) {
+                diagnosis = "Peptic Ulcer";
+                remedy = "Antibiotics if H. pylori infection is present, and proton pump inhibitors";
+            } else if (input.includes("difficulty swallowing") || input.includes("regurgitation of food")) {
+                diagnosis = "Esophageal reflux disease (GERD)";
+                remedy = "Antacids, proton pump inhibitors, and lifestyle changes";
+            } else if (input.includes("unexplained bruising") || input.includes("fatigue")) {
+                diagnosis = "Leukemia";
+                remedy = "Chemotherapy and possible bone marrow transplant";
+            } else if (input.includes("nausea") || input.includes("vomiting blood")) {
+                diagnosis = "Gastric bleeding";
+                remedy = "Endoscopy, medications, and sometimes surgery";
+            } else if (input.includes("severe dizziness") || input.includes("confusion")) {
+                diagnosis = "Stroke";
+                remedy = "Call 911 immediately for emergency treatment";
+            } else if (input.includes("sudden weakness") || input.includes("slurred speech")) {
+                diagnosis = "Stroke";
+                remedy = "Seek emergency medical help immediately";
+            } else if (input.includes("red eyes") || input.includes("eye pain")) {
+                diagnosis = "Conjunctivitis";
+                remedy = "Antibiotic or antiviral eye drops, depending on the cause";
+            } else if (input.includes("persistent dry cough") || input.includes("wheezing")) {
+                diagnosis = "Pulmonary fibrosis";
+                remedy = "Oxygen therapy and antifibrotic medications";
+            } else if (input.includes("constant tiredness") || input.includes("shortness of breath")) {
+                diagnosis = "Anemia";
+                remedy = "Iron supplements or other treatments depending on the cause";
+            } else if (input.includes("stiff neck") || input.includes("fever")) {
+                diagnosis = "Meningitis";
+                remedy = "Hospitalization, antibiotics, and antiviral medications";
+            } else if (input.includes("frequent headaches") || input.includes("blurry vision")) {
+                diagnosis = "High blood pressure (Hypertension)";
+                remedy = "Antihypertensive medications and lifestyle changes";
+            } else if (input.includes("itchy skin") || input.includes("red patches on skin")) {
+                diagnosis = "Psoriasis";
+                remedy = "Topical corticosteroids and light therapy";
+            } else if (input.includes("chronic fatigue") || input.includes("fever")) {
+                diagnosis = "Mononucleosis";
+                remedy = "Rest and hydration, with medications for symptoms";
+            } else if (input.includes("swollen feet") || input.includes("pain in calves")) {
+                diagnosis = "Deep vein thrombosis (DVT)";
+                remedy = "Blood thinners and sometimes compression stockings";
+            } else if (input.includes("numbness in fingers") || input.includes("pins and needles")) {
+                diagnosis = "Carpal Tunnel Syndrome";
+                remedy = "Wrist splints, rest, and in some cases, surgery";
+            } else if (input.includes("severe back pain") || input.includes("numbness in legs")) {
+                diagnosis = "Herniated disc";
+                remedy = "Rest, physical therapy, and possibly surgery";
+            } else if (input.includes("rash") || input.includes("fever")) {
+                diagnosis = "Chickenpox";
+                remedy = "Antihistamines for itching and antiviral medication in severe cases";
+            } else if (input.includes("sore throat") || input.includes("white patches on tonsils")) {
+                diagnosis = "Tonsillitis";
+                remedy = "Antibiotics and pain relievers if bacterial";
+            } else if (input.includes("frequent thirst") || input.includes("dry mouth")) {
+                diagnosis = "Diabetes insipidus";
+                remedy = "Hormone replacement and managing fluid intake";
+            } else if (input.includes("pain in chest") || input.includes("difficulty breathing")) {
+                diagnosis = "Pulmonary embolism";
+                remedy = "Immediate medical attention, blood thinners, and sometimes surgery";
+            } else if (input.includes("pain in joints") || input.includes("swelling in joints")) {
+                diagnosis = "Osteoarthritis";
+                remedy = "Pain relievers, physical therapy, and in severe cases, joint replacement";
+            } else if (input.includes("tingling in hands") || input.includes("numbness in feet")) {
+                diagnosis = "Peripheral neuropathy";
+                remedy = "Medications for nerve pain and managing underlying conditions";
+            } else if (input.includes("severe stomach cramps") || input.includes("bloody stools")) {
+                diagnosis = "Inflammatory bowel disease (IBD)";
+                remedy = "Anti-inflammatory drugs, immunosuppressants, and dietary changes";
+            } else if (input.includes("severe fatigue") || input.includes("joint pain")) {
+                diagnosis = "Lupus";
+                remedy = "Immunosuppressive drugs and symptom management";
+            } else if (input.includes("nausea") || input.includes("yellow skin")) {
+                diagnosis = "Hepatitis";
+                remedy = "Antiviral medications and lifestyle modifications";
+            } else if (input.includes("bleeding gums") || input.includes("loose teeth")) {
+                diagnosis = "Gum disease (Periodontitis)";
+                remedy = "Regular dental cleaning, improved oral hygiene, and sometimes surgery";
+            } else if (input.includes("swollen face") || input.includes("shortness of breath")) {
+                diagnosis = "Angioedema";
+                remedy = "Antihistamines and sometimes epinephrine for severe reactions";
+            } else if (input.includes("numbness in toes") || input.includes("cold feet")) {
+                diagnosis = "Raynaud's Disease";
+                remedy = "Warm clothing, medications for blood flow, and stress management";
+            } else if (input.includes("sore muscles") || input.includes("fatigue")) {
+                diagnosis = "Fibromyalgia";
+                remedy = "Pain relievers, antidepressants, and stress management techniques";
+            } else if (input.includes("pain in throat") || input.includes("difficulty swallowing")) {
+                diagnosis = "Gastroesophageal reflux disease (GERD)";
+                remedy = "Antacids, proton pump inhibitors, and lifestyle changes";
+            } else if (input.includes("extreme thirst") || input.includes("dry skin")) {
+                diagnosis = "Diabetic ketoacidosis (DKA)";
+                remedy = "Immediate medical attention with intravenous fluids and insulin";
+            } else if (input.includes("heart palpitations") || input.includes("chest discomfort")) {
+                diagnosis = "Arrhythmia";
+                remedy = "Cardiac medications, lifestyle changes, or surgical interventions";
+            } else if (input.includes("sore mouth") || input.includes("painful ulcers")) {
+                diagnosis = "Aphthous Stomatitis (Canker sores)";
+                remedy = "Topical corticosteroids and saltwater rinses";
+            } else if (input.includes("pain in legs") || input.includes("swelling in calves")) {
+                diagnosis = "Varicose veins";
+                remedy = "Compression stockings and lifestyle modifications";
+            } else if (input.includes("sudden confusion") || input.includes("difficulty speaking")) {
+                diagnosis = "Transient ischemic attack (TIA)";
+                remedy = "Emergency medical treatment and risk factor management";
+            } else if (input.includes("swollen abdomen") || input.includes("painful bloating")) {
+                diagnosis = "Ascites";
+                remedy = "Treat underlying liver disease, diuretics, and in severe cases, paracentesis";
+            }
+            resultDiv.innerText = `🩺 Diagnosis: ${diagnosis}\n💊 Remedy: ${remedy}`;
+        }
+    </script>
 
 </body>
+
 </html>

@@ -93,7 +93,11 @@
       } else if (input.includes("nausea")) {
         diagnosis = "Mild Nausea";
         remedy = "Try ginger tea or peppermint. Eat bland foods. Stay hydrated.";
-      }
+      } else if (input.includes("numbness in left arm") || input.includes("chest pain")) {
+        diagnosis = "Heart attack";
+        remedy = "Call 911";
+      } 
+      
 
       resultDiv.innerText = `🩺 Diagnosis: ${diagnosis}\n💊 Remedy: ${remedy}`;
     }

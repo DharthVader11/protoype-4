@@ -77,25 +77,7 @@
             let remedy = "Please consult a healthcare professional.";
 
             // Basic keyword-based symptom matching
-            if (input.includes("headache")) {
-                diagnosis = "Tension Headache";
-                remedy = "Rest in a quiet, dark room. Drink water. Take an over-the-counter pain reliever like ibuprofen.";
-            } else if (input.includes("sore throat") || input.includes("throat pain")) {
-                diagnosis = "Sore Throat (Possibly Viral)";
-                remedy = "Gargle with warm salt water. Drink warm fluids. Use throat lozenges or sprays.";
-            } else if (input.includes("cough")) {
-                diagnosis = "Common Cold or Cough";
-                remedy = "Stay hydrated, rest, and consider honey in warm tea. If severe or persistent, see a doctor.";
-            } else if (input.includes("stomach ache") || input.includes("stomach pain")) {
-                diagnosis = "Mild Gastric Upset";
-                remedy = "Drink clear fluids, avoid solid food temporarily, and rest. If symptoms persist, consult a doctor.";
-            } else if (input.includes("fever")) {
-                diagnosis = "Possible Viral Infection";
-                remedy = "Take paracetamol or ibuprofen, rest, and drink plenty of fluids.";
-            } else if (input.includes("nausea")) {
-                diagnosis = "Mild Nausea";
-                remedy = "Try ginger tea or peppermint. Eat bland foods. Stay hydrated.";
-            } else if (input.includes("numbness in left arm") || input.includes("chest pain")) {
+            if (input.includes("numbness in left arm") || input.includes("chest pain")) {
                 diagnosis = "Heart attack";
                 remedy = "Call 911";
             } else if (input.includes("fever") || input.includes("chills")) {
